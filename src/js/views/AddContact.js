@@ -1,7 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 
 export const AddContact = () => {
+//declarar los 4 estados para nombre direccion telefono y mail
+const [fullname, setFullname] = useState ("")
+const [email, setEmail] = useState ("")
+const [address, setAdress] = useState ("")
+const [phone, setPhone] = useState ("")
+
+
+
+
+
 	return (
 		<div className="container">
 			<div>
