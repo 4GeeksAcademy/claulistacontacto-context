@@ -8,10 +8,34 @@ const getState = ({ getStore, setStore }) => {
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()
 
+			agregarContacto: async function(fullName, email, address, phone) {
+				console.log("agregarcontacto");
+				try {
+					let response = await fetch("https://playground.4geeks.com/apis/fake/contact/", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							full_name: fullName,
+							email: email,
+							agenda_slug: "Claudia",
+							address: address,
+							phone: phone
+						})
+					});
+					let data = await response.json(); //guardo el objeto en data
+					console.log(data);
+				} catch (error) {
+					console.log(error); //si hay un error me muestra cual fue
+				}
+			},
+
 			obtenerInfo: async function() {
+				//obtener informacion de la API
 				console.log("obtener info");
 				try {
-					let response = await fetch("https://playground.4geeks.com/apis/fake/contact/agenda", {
+					let response = await fetch("https://playground.4geeks.com/apis/fake/contact/agenda/Claudia", {
 						method: "GET"
 						// ContentType: "application/json",
 						// PARAMS: "None"
@@ -19,6 +43,19 @@ const getState = ({ getStore, setStore }) => {
 					let data = await response.json();
 					console.log(data); //llama a la funcion y le pasa como argumento data( que es un objeto label y done)
 					setStore({ contacts: data });
+				} catch (error) {
+					console.log(error);
+				}
+			},
+
+			eliminarContacto: async function(id) {
+				try {
+					let response = await fetch("https://playground.4geeks.com/apis/fake/contact/" + id, {
+						method: "DELETE",
+						headers: {
+							"Content-Type": "application/json"
+						}
+					});
 				} catch (error) {
 					console.log(error);
 				}
