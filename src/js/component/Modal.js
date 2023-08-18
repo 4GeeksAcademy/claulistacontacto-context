@@ -10,6 +10,11 @@ export const Modal = props => {
 		//initialize state here
 	});
 
+	function borrar(id) {
+		props.onClose();
+		actions.eliminarContacto(props.id);
+	}
+
 	return (
 		<div className="modal" tabIndex="-1" role="dialog" style={{ display: props.show ? "inline-block" : "none" }}>
 			<div className="modal-dialog" role="document">
@@ -36,11 +41,7 @@ export const Modal = props => {
 						<button type="button" className="btn btn-primary">
 							Oh no!
 						</button>
-						<button
-							type="button"
-							className="btn btn-secondary"
-							data-dismiss="modal"
-							onClick={() => actions.eliminarContacto(props.id)}>
+						<button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={borrar}>
 							Do it!
 						</button>
 					</div>

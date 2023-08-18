@@ -14,7 +14,7 @@ export const Contacts = () => {
 
 	useEffect(() => {
 		actions.obtenerInfo();
-	}, [store.contacts]);
+	}, []);
 
 	return (
 		<div className="container">

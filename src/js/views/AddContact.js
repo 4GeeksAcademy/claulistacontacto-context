@@ -27,7 +27,7 @@ export const AddContact = () => {
 	console.log(fullName);
 
 	function agregarTodo(e) {
-		e.preventDefault;
+		e.preventDefault();
 		actions.agregarContacto(fullName, email, phone, address);
 	}
 	return (

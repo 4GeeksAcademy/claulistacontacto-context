@@ -3,12 +3,19 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import MikePhoto from "../../img/m101.jpg";
 import { Context } from "../store/appContext.js";
+import { ModalNuevo } from "./ModalNuevo";
 
 export const ContactCard = props => {
 	const { store, actions } = useContext(Context);
+	const [mostrarModal, setMostrarModal] = useState(false);
+
 	const [state, setState] = useState({
 		//initialize state here
 	});
+
+	// function editar(id) {
+	// 	actions.editarContacto(fullName, email, address, phone, id);
+	// }
 
 	return (
 		<>
@@ -23,7 +30,7 @@ export const ContactCard = props => {
 					</div>
 					<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 						<div className=" float-right">
-							<button className="btn">
+							<button className="btn" onClick={() => setMostrarModal(true)}>
 								<i className="fas fa-pencil-alt mr-3" />
 							</button>
 							<button className="btn" onClick={() => props.onDelete()}>
@@ -52,6 +59,7 @@ export const ContactCard = props => {
 						<span className="text-muted small text-truncate">{props.email}</span>
 					</div>
 				</div>
+				{mostrarModal && <ModalNuevo manejarModal={() => setMostrarModal(false)} />}
 			</li>
 		</>
 	);
